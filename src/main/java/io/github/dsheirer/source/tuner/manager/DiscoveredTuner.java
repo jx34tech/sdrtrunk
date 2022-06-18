@@ -1,6 +1,6 @@
 /*
  * *****************************************************************************
- * Copyright (C) 2014-2022 Dennis Sheirer
+ * Copyright (C) 2014-2023 Dennis Sheirer
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -198,7 +198,10 @@ public abstract class DiscoveredTuner implements ITunerErrorListener
      */
     public void addTunerStatusListener(IDiscoveredTunerStatusListener listener)
     {
-        mListeners.add(listener);
+        if(!mListeners.contains(listener))
+        {
+            mListeners.add(listener);
+        }
     }
 
     /**
@@ -234,6 +237,12 @@ public abstract class DiscoveredTuner implements ITunerErrorListener
         mLog.info("Tuner Error - Stopping - " + getId() + " Error: " + errorMessage);
         stop();
         setTunerStatus(TunerStatus.ERROR);
+    }
+
+    @Override
+    public void tunerRemoved()
+    {
+        setTunerStatus(TunerStatus.REMOVED);
     }
 
     /**
