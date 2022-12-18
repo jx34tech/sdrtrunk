@@ -323,15 +323,6 @@ public class DecodeEvent implements IDecodeEvent
         }
 
         /**
-         * Sets the Decode Event type for this event.
-         * @param eventType
-         */
-        public DecodeEventBuilder eventType(DecodeEventType eventType) {
-            mDecodeEventType = eventType;
-            return this;
-        }
-
-        /**
          * Sets the event description text
          * @param description of the event
          */
