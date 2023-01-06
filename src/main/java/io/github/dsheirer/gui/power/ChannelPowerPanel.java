@@ -1,3 +1,22 @@
+/*
+ * *****************************************************************************
+ * Copyright (C) 2014-2023 Dennis Sheirer
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * ****************************************************************************
+ */
+
 package io.github.dsheirer.gui.power;
 
 import io.github.dsheirer.controller.channel.Channel;
@@ -6,7 +25,15 @@ import io.github.dsheirer.gui.control.DbPowerMeter;
 import io.github.dsheirer.module.ProcessingChain;
 import io.github.dsheirer.playlist.PlaylistManager;
 import io.github.dsheirer.sample.Listener;
+import io.github.dsheirer.sample.complex.ComplexSamplesToNativeBufferModule;
+import io.github.dsheirer.settings.SettingsManager;
 import io.github.dsheirer.source.SourceEvent;
+import io.github.dsheirer.spectrum.ComplexDftProcessor;
+import io.github.dsheirer.spectrum.SpectrumPanel;
+import io.github.dsheirer.spectrum.converter.ComplexDecibelConverter;
+import io.github.dsheirer.spectrum.converter.DFTResultsConverter;
+import java.awt.EventQueue;
+import java.text.DecimalFormat;
 import jiconfont.icons.font_awesome.FontAwesome;
 import jiconfont.swing.IconFontSwing;
 import net.miginfocom.swing.MigLayout;
@@ -17,8 +44,7 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.EventQueue;
-import java.text.DecimalFormat;
+import javax.swing.JSeparator;
 
 /**
  * Display for channel power and squelch details
@@ -30,6 +56,10 @@ public class ChannelPowerPanel extends JPanel implements Listener<ProcessingChai
     private static final String NOT_AVAILABLE = "Not Available";
     private PlaylistManager mPlaylistManager;
     private ProcessingChain mProcessingChain;
+    private ComplexSamplesToNativeBufferModule mSampleStreamTapModule = new ComplexSamplesToNativeBufferModule();
+    private ComplexDftProcessor mComplexDftProcessor = new ComplexDftProcessor();
+    private DFTResultsConverter mDFTResultsConverter = new ComplexDecibelConverter();
+    private SpectrumPanel mSpectrumPanel;
     private DbPowerMeter mPowerMeter = new DbPowerMeter();
     private PeakMonitor mPeakMonitor = new PeakMonitor(DbPowerMeter.DEFAULT_MINIMUM_POWER);
     private SourceEventProcessor mSourceEventProcessor = new SourceEventProcessor();
@@ -40,15 +70,17 @@ public class ChannelPowerPanel extends JPanel implements Listener<ProcessingChai
     private JButton mSquelchUpButton;
     private JButton mSquelchDownButton;
     private double mSquelchThreshold;
+    private boolean mPanelVisible = false;
+    private boolean mDftProcessing = false;
 
     /**
      * Constructs an instance.
      */
-    public ChannelPowerPanel(PlaylistManager playlistManager)
+    public ChannelPowerPanel(PlaylistManager playlistManager, SettingsManager settingsManager)
     {
         mPlaylistManager = playlistManager;
 
-        setLayout(new MigLayout("", "[][grow,fill]", "[grow,fill]"));
+        setLayout(new MigLayout("", "[][][][grow,fill]", "[grow,fill]"));
         mPowerMeter.setPeakVisible(true);
         mPowerMeter.setSquelchThresholdVisible(true);
         add(mPowerMeter);
@@ -85,6 +117,78 @@ public class ChannelPowerPanel extends JPanel implements Listener<ProcessingChai
         valuePanel.add(mSquelchDownButton);
 
         add(valuePanel);
+        add(new JSeparator(JSeparator.VERTICAL));
+
+        JPanel fftPanel = new JPanel();
+        fftPanel.setLayout(new MigLayout("", "[grow,fill]", "[][grow,fill]"));
+        fftPanel.add(new JLabel("Channel Spectrum"), "wrap");
+        mSpectrumPanel = new SpectrumPanel(settingsManager);
+        fftPanel.add(mSpectrumPanel);
+        add(fftPanel);
+
+        mSampleStreamTapModule.setListener(mComplexDftProcessor);
+        mComplexDftProcessor.addConverter(mDFTResultsConverter);
+        mDFTResultsConverter.addListener(mSpectrumPanel);
+        mSpectrumPanel.clearSpectrum();
+    }
+
+    /**
+     * Signals this panel to indicate if this panel is visible to turn on the FFT processor when the panel is visible
+     * and turn off the FFT processor when it's not.
+     *
+     * Note: this method is intended to be called by the Swing event thread to ensure that only a single thread is
+     * invoking either this method, or the receive() method, since there is no thread synchronization between these
+     * two methods and they each depend on stable access to the mPanelVisible variable.
+     *
+     * @param visible true to indicate that this panel is showing/visible.
+     */
+    public void setPanelVisible(boolean visible)
+    {
+        mPanelVisible = visible;
+        updateFFTProcessing();
+    }
+
+    /**
+     * Updates processing state for the DFT processor.  Turns on DFT processing when we have a processing chain and
+     * when the user has this tab selected and visible.  Otherwise, turns off DFT processing.
+     */
+    private void updateFFTProcessing()
+    {
+        if(mPanelVisible && mProcessingChain != null)
+        {
+            startDftProcessing();
+        }
+        else
+        {
+            stopDftProcessing();
+        }
+    }
+
+    /**
+     * Starts DFT processing
+     */
+    private void startDftProcessing()
+    {
+        if(!mDftProcessing)
+        {
+            mDftProcessing = true;
+            mSampleStreamTapModule.setListener(mComplexDftProcessor);
+            mComplexDftProcessor.start();
+        }
+    }
+
+    /**
+     * Stops DFT processing
+     */
+    private void stopDftProcessing()
+    {
+        if(mDftProcessing)
+        {
+            mSampleStreamTapModule.removeListener();
+            mComplexDftProcessor.stop();
+            mSpectrumPanel.clearSpectrum();
+            mDftProcessing = false;
+        }
     }
 
     /**
@@ -138,9 +242,11 @@ public class ChannelPowerPanel extends JPanel implements Listener<ProcessingChai
     @Override
     public void receive(ProcessingChain processingChain)
     {
+        //Disconnect the FFT panel
         if(mProcessingChain != null)
         {
             mProcessingChain.removeSourceEventListener(mSourceEventProcessor);
+            mProcessingChain.removeModule(mSampleStreamTapModule);
         }
 
         //Invoking reset - we're on the Swing dispatch thread here
@@ -151,10 +257,14 @@ public class ChannelPowerPanel extends JPanel implements Listener<ProcessingChai
         if(mProcessingChain != null)
         {
             mProcessingChain.addSourceEventListener(mSourceEventProcessor);
+            mProcessingChain.addModule(mSampleStreamTapModule);
         }
+
+        updateFFTProcessing();
 
         broadcast(SourceEvent.requestCurrentSquelchThreshold(null));
     }
+
 
     /**
      * Processor for source event stream to capture power level and squelch related source events.
