@@ -30,7 +30,6 @@ public enum AcknowledgeType
     WAIT(3, "WAIT"),
     UNKNOWN(-1, "UNKNOWN");
 
-    private int mValue;
     private String mLabel;
 
     /**
@@ -40,7 +39,6 @@ public enum AcknowledgeType
      */
     AcknowledgeType(int value, String label)
     {
-        mValue = value;
         mLabel = label;
     }
 

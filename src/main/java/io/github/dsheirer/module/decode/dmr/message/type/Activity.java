@@ -44,7 +44,6 @@ public enum Activity
     RESERVED_15(15, "RESERVED 15"),
     UNKNOWN(-1, "UNKNOWN");
 
-    private int mValue;
     private String mLabel;
 
     /**
@@ -54,7 +53,6 @@ public enum Activity
      */
     Activity(int value, String label)
     {
-        mValue = value;
         mLabel = label;
     }
 

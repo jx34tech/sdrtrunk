@@ -55,13 +55,10 @@ public class AddRecordingTunerDialog extends JFrame
     private UserPreferences mUserPreferences;
     private DiscoveredTunerModel mDiscoveredTunerModel;
     private TunerConfigurationManager mTunerConfigurationManager;
-    private JButton mSelectFileButton;
     private File mSelectedRecording;
     private JLabel mRecordingFileLabel;
-    private JLabel mFrequencyLabel;
     private JTextField mFrequencyTextField;
     private JButton mAddButton;
-    private JButton mCancelButton;
     private static final Pattern TUNER_RECORDING_PATTERN = Pattern.compile(".*_(\\d*)_baseband_\\d{8}_\\d{6}\\.wav");
 
     public AddRecordingTunerDialog(UserPreferences userPreferences, DiscoveredTunerModel discoveredTunerModel,
@@ -82,7 +79,7 @@ public class AddRecordingTunerDialog extends JFrame
         JPanel content = new JPanel();
         content.setLayout(new MigLayout("", "[align right][][]", "[][][grow][]"));
 
-        mSelectFileButton = new JButton("Select ...");
+        JButton mSelectFileButton = new JButton("Select ...");
         mSelectFileButton.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             String lastBrowsedDirectory = SystemProperties.getInstance().get(LAST_FILE_BROWSE_LOCATION_KEY, "");
@@ -153,7 +150,7 @@ public class AddRecordingTunerDialog extends JFrame
         mRecordingFileLabel = new JLabel(SELECT_A_FILE);
         content.add(mRecordingFileLabel, "span 2,wrap");
 
-        mFrequencyLabel = new JLabel("Frequency (Hz):");
+        JLabel mFrequencyLabel = new JLabel("Frequency (Hz):");
         content.add(mFrequencyLabel);
 
         mFrequencyTextField = new JTextField("");
@@ -209,7 +206,7 @@ public class AddRecordingTunerDialog extends JFrame
         });
         content.add(mAddButton, "grow,push");
 
-        mCancelButton = new JButton("Cancel");
+        JButton mCancelButton = new JButton("Cancel");
         mCancelButton.addActionListener(new ActionListener()
         {
             @Override

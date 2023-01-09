@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 /*
  * *****************************************************************************
  * Copyright (C) 2014-2022 Dennis Sheirer
@@ -93,7 +95,7 @@ dependencies {
 /**
  * This is needed for the JDK17 vector API ... until it moves out of incubation
  */
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.compilerArgs.add("--add-modules=jdk.incubator.vector") //Needed while Panama Vector API remains in incubator
 }
 
@@ -111,7 +113,7 @@ jar {
                 'Implementation-Title'  : 'sdrtrunk project',
                 'Implementation-Version' : archiveVersion,
                 'Created-By'            : "Gradle ${gradle.gradleVersion}",
-                'Build-Timestamp'       : new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+                'Build-Timestamp'       : new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
                 'Build-JDK'             : "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']}",
                 'Build-OS'              : "${System.properties['os.name']} (${System.properties['os.arch']} ${System.properties['os.version']}"
         )
@@ -222,5 +224,5 @@ runtime {
 
     //Runtime images have auto appended version in image zip name.  Override to include version in single target image.
     imageZip = (hasTargetJdks | downloadJdks) ? file("$buildDir/image/sdr-trunk.zip") :
-            file("$buildDir/image/sdr-trunk-" + version + ".zip")
+            file("$buildDir/image/sdr-trunk-" + version + ".zip") as RegularFile
 }
