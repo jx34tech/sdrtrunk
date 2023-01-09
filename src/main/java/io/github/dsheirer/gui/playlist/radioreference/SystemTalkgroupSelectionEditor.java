@@ -712,13 +712,8 @@ public class SystemTalkgroupSelectionEditor extends GridPane
                     return true;
                 }
 
-                if(aliasedTalkgroup.aliasProperty().get() != null &&
-                   aliasedTalkgroup.aliasProperty().get().toLowerCase().contains(mFilterText))
-                {
-                    return true;
-                }
-
-                return false;
+                return aliasedTalkgroup.aliasProperty().get() != null &&
+                        aliasedTalkgroup.aliasProperty().get().toLowerCase().contains(mFilterText);
             }
             else if(mCategory != null)
             {
@@ -738,13 +733,8 @@ public class SystemTalkgroupSelectionEditor extends GridPane
                     return true;
                 }
 
-                if(aliasedTalkgroup.aliasProperty().get() != null &&
-                    aliasedTalkgroup.aliasProperty().get().toLowerCase().contains(mFilterText))
-                {
-                    return true;
-                }
-
-                return false;
+                return aliasedTalkgroup.aliasProperty().get() != null &&
+                        aliasedTalkgroup.aliasProperty().get().toLowerCase().contains(mFilterText);
             }
         }
     }

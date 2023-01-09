@@ -97,34 +97,31 @@ public class SLMapServerInfo extends TileFactoryInfo
 	@Override
 	public String getTileUrl(int x, int y, int zoom)
 	{
-		int ty = y;
-		int tx = x;
 
 		// int width_in_tiles = (int)Math.pow(2,pyramid_top-zoom);
 		int width_in_tiles = getMapWidthInTilesAtZoom(zoom);
 		// System.out.println("width in tiles = " + width_in_tiles + " x = " + tx + " y = " + ty);
-		if (ty < 0)
+		if (y < 0)
 		{
 			return null;
 		}
 		if (zoom < midpoint)
 		{
-			if (ty >= width_in_tiles / 2)
+			if (y >= width_in_tiles / 2)
 			{
 				return null;
 			}
 		}
 		else
 		{
-			if (ty != 0)
+			if (y != 0)
 			{
 				return null;
 			}
 		}
 
-		String url = this.baseURL + "/" + zoom + "/" + ty + "/" + tx + ".jpg";
 		// System.out.println("returning: " + url);
-		return url;
+		return this.baseURL + "/" + zoom + "/" + y + "/" + x + ".jpg";
 	}
 
 }

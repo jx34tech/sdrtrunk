@@ -81,8 +81,7 @@ public class ColorUtil
         value = value >> 8;
         double alpha = (double)(value & 0xFF) / 255.0;
 
-        Color color = Color.rgb(red, green, blue, alpha);
-        return color;
+        return Color.rgb(red, green, blue, alpha);
     }
 
     public static void main(String[] args)

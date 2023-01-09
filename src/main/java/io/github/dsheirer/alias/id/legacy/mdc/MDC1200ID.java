@@ -35,7 +35,7 @@ public class MDC1200ID extends AliasID
     @Override
     public boolean isAudioIdentifier()
     {
-        return false;
+        return true;
     }
 
     @JacksonXmlProperty(isAttribute = true, localName = "ident")

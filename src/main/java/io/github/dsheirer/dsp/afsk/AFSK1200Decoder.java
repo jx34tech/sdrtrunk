@@ -122,7 +122,7 @@ public class AFSK1200Decoder implements Listener<float[]>
     {
         if(mBinarySymbolProcessor != null)
         {
-            mBinarySymbolProcessor.process(mNormalOutput ? symbol : !symbol);
+            mBinarySymbolProcessor.process(mNormalOutput == symbol);
         }
     }
 

@@ -143,10 +143,8 @@ public class LocalResponseCache extends ResponseCache
 		name = name.replace('<', '$');
 		name = name.replace('>', '$');
 		name = name.replace('"', '$');
-		
-		File f = new File(cacheDir, name);
-		
-		return f;
+
+		return new File(cacheDir, name);
 	}
 
 	/**

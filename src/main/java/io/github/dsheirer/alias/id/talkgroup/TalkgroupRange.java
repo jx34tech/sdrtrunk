@@ -55,7 +55,7 @@ public class TalkgroupRange extends AliasID implements Comparable<TalkgroupRange
     @Override
     public boolean isAudioIdentifier()
     {
-        return false;
+        return true;
     }
 
     @JacksonXmlProperty(isAttribute = true, localName = "min")

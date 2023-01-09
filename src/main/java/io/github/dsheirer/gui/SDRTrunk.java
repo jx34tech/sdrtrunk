@@ -188,7 +188,7 @@ public class SDRTrunk implements Listener<TunerEvent>
         }
 
         CalibrationManager calibrationManager = CalibrationManager.getInstance(mUserPreferences);
-        final boolean calibrating = !calibrationManager.isCalibrated() &&
+        final boolean calibrating = calibrationManager.isCalibrated() &&
             !mUserPreferences.getVectorCalibrationPreference().isHideCalibrationDialog();
 
         new ChannelSelectionManager(mPlaylistManager.getChannelModel());

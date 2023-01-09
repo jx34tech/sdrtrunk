@@ -551,7 +551,7 @@ public class P25TrafficChannelManager extends TrafficChannelManager implements I
      */
     private DecodeEventType getEventType(Opcode opcode, ServiceOptions serviceOptions)
     {
-        boolean encrypted = serviceOptions != null ? serviceOptions.isEncrypted() : false;
+        boolean encrypted = serviceOptions != null && serviceOptions.isEncrypted();
 
         DecodeEventType type = null;
 

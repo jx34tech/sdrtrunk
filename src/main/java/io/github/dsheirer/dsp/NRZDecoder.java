@@ -62,7 +62,7 @@ public class NRZDecoder implements IBinarySymbolProcessor
 
         if(mListener != null)
         {
-            mListener.process(mMode ? result : !result);
+            mListener.process(mMode == result);
         }
 
         mPrevious = result;

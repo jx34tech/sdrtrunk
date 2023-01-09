@@ -302,7 +302,6 @@ public class ComplexPolyphaseChannelizerM2 extends AbstractComplexPolyphaseChann
     private static float[] getAlignedFilter(float[] coefficients, int channelCount, int tapsPerChannel)
     {
         float[] filter = new float[channelCount * tapsPerChannel * 2];
-        int blockSize = channelCount;
 
         int coefficientPointer = 0;
         int filterPointer = 0;
@@ -315,12 +314,12 @@ public class ComplexPolyphaseChannelizerM2 extends AbstractComplexPolyphaseChann
         }
 
         //Swap each of the coefficients on block size boundaries
-        for(int x = 0; x < filter.length; x += blockSize)
+        for(int x = 0; x < filter.length; x += channelCount)
         {
-            for(int y = 0; y < blockSize / 2; y++)
+            for(int y = 0; y < channelCount / 2; y++)
             {
                 int index1 = x + y;
-                int index2 = x + (blockSize - y - 1);
+                int index2 = x + (channelCount - y - 1);
                 float temp = filter[index2];
                 filter[index2] = filter[index1];
                 filter[index1] = temp;

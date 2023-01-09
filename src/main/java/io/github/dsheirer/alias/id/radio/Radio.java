@@ -50,7 +50,7 @@ public class Radio extends AliasID implements Comparable<Radio>
     @Override
     public boolean isAudioIdentifier()
     {
-        return false;
+        return true;
     }
 
     @JacksonXmlProperty(isAttribute = true, localName = "value")

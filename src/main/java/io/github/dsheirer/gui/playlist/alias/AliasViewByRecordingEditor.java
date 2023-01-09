@@ -441,10 +441,7 @@ public class AliasViewByRecordingEditor extends VBox
                         return true;
                     }
 
-                    if(alias.getName() != null && alias.getName().toLowerCase().contains(mFilterText))
-                    {
-                        return true;
-                    }
+                    return alias.getName() != null && alias.getName().toLowerCase().contains(mFilterText);
                 }
             }
 
@@ -492,10 +489,7 @@ public class AliasViewByRecordingEditor extends VBox
                         return true;
                     }
 
-                    if(alias.getName() != null && alias.getName().toLowerCase().contains(mFilterText))
-                    {
-                        return true;
-                    }
+                    return alias.getName() != null && alias.getName().toLowerCase().contains(mFilterText);
                 }
             }
 

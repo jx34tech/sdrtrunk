@@ -1035,14 +1035,7 @@ public class SiteEditor extends GridPane
                     {
                         createControlAndAlternatesChannel();
                     }
-                    else if(getSelectedToggleButton().isSelected())
-                    {
-                        createChannels(true);
-                    }
-                    else
-                    {
-                        createChannels(false);
-                    }
+                    else createChannels(getSelectedToggleButton().isSelected());
                 }
             });
         }

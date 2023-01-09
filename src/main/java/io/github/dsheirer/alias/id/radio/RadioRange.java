@@ -44,7 +44,7 @@ public class RadioRange extends AliasID implements Comparable<RadioRange>
     @Override
     public boolean isAudioIdentifier()
     {
-        return false;
+        return true;
     }
 
     /**

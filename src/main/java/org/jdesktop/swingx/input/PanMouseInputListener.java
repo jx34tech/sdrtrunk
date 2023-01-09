@@ -58,7 +58,7 @@ public class PanMouseInputListener extends MouseInputAdapter
 		double x = viewer.getCenter().getX() - (current.x - prev.x);
 		double y = viewer.getCenter().getY() - (current.y - prev.y);
 
-		if (!viewer.isNegativeYAllowed())
+		if (viewer.isNegativeYAllowed())
 		{
 			if (y < 0)
 			{

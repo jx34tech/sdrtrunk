@@ -37,7 +37,7 @@ public class BroadcastChannel extends AliasID implements Comparable<BroadcastCha
     @Override
     public boolean isAudioIdentifier()
     {
-        return true;
+        return false;
     }
 
     @Override

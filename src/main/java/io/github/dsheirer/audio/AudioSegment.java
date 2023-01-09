@@ -227,7 +227,7 @@ public class AudioSegment implements Listener<IdentifierUpdateNotification>
      */
     public boolean isLinkedTo(AudioSegment audioSegment)
     {
-        return isLinked() && audioSegment != null && mLinkedAudioSegment.equals(audioSegment);
+        return isLinked() && mLinkedAudioSegment.equals(audioSegment);
     }
 
     /**

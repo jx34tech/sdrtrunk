@@ -57,7 +57,7 @@ public class UserRegistrationAcknowledge extends ARSHeader
 
     public boolean isSuccessful()
     {
-        return !isAcknowledge();
+        return isAcknowledge();
     }
 
     public int getSessionTime()

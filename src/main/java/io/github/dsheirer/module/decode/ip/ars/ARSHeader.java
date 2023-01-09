@@ -82,7 +82,7 @@ public abstract class ARSHeader extends Header
      */
     public boolean isAcknowledge()
     {
-        return getMessage().get(ACKNOWLEDGEMENT_FLAG + getOffset());
+        return !getMessage().get(ACKNOWLEDGEMENT_FLAG + getOffset());
     }
 
     /**

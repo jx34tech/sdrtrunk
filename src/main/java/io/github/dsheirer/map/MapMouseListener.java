@@ -59,7 +59,7 @@ public class MapMouseListener extends MouseInputAdapter implements MouseWheelLis
 		double y = mJXMapViewer.getCenter().getY() - 
 				   (current.getY() - mPreviousPoint.getY() );
 
-		if ( !mJXMapViewer.isNegativeYAllowed() )
+		if (mJXMapViewer.isNegativeYAllowed())
 		{
 			if ( y < 0 )
 			{

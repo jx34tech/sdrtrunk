@@ -391,7 +391,8 @@ public class StreamingEditor extends SplitPane
             TableColumn<ConfiguredBroadcast,Boolean> enabledColumn = new TableColumn("Enabled");
             enabledColumn.setCellValueFactory(new PropertyValueFactory<>("enabled"));
             enabledColumn.setCellFactory(param -> {
-                TableCell<ConfiguredBroadcast,Boolean> tableCell = new TableCell<>()
+
+                return new TableCell<>()
                 {
                     @Override
                     protected void updateItem(Boolean item, boolean empty)
@@ -411,8 +412,6 @@ public class StreamingEditor extends SplitPane
                         }
                     }
                 };
-
-                return tableCell;
             });
 
             TableColumn nameColumn = new TableColumn("Name");

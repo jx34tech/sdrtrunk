@@ -80,8 +80,7 @@ public class SwingPreference
 
         if(x != Integer.MAX_VALUE && y != Integer.MAX_VALUE)
         {
-            Point location = new Point(x,y);
-            return location;
+            return new Point(x,y);
         }
 
         return null;

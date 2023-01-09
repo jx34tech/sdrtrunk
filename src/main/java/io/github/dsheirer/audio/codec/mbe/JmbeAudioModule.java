@@ -235,13 +235,6 @@ public abstract class JmbeAudioModule extends AbstractAudioModule implements Lis
             }
         }
 
-        if(audioConverter != null)
-        {
-            mAudioCodec = audioConverter;
-        }
-        else
-        {
-            mAudioCodec = null;
-        }
+        mAudioCodec = audioConverter;
     }
 }

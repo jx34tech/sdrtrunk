@@ -128,7 +128,7 @@ public class TonesID extends AliasID implements ListChangeListener<Tone>
     public boolean isAudioIdentifier()
     {
         //This is not an audio identifier in the context that this method is used for.
-        return false;
+        return true;
     }
 
     @Override

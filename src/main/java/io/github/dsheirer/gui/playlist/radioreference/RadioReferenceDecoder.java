@@ -323,10 +323,7 @@ public class RadioReferenceDecoder
             {
                 return true;
             }
-            else if(site.getDescription() != null && site.getDescription().contains("Simulcast"))
-            {
-                return true;
-            }
+            else return site.getDescription() != null && site.getDescription().contains("Simulcast");
         }
 
         return false;

@@ -276,10 +276,8 @@ public class ShoutcastV1BroadcastMetadataUpdater implements IBroadcastMetadataUp
 
             Map<String,String> headers = new HashMap<>();
 
-            HttpRequestImpl request = new HttpRequestImpl(HttpVersion.HTTP_1_0, HttpMethod.GET, "/admin.cgi",
+            return new HttpRequestImpl(HttpVersion.HTTP_1_0, HttpMethod.GET, "/admin.cgi",
                 sb.toString(), headers);
-
-            return request;
         }
         catch(UnsupportedEncodingException e)
         {

@@ -413,12 +413,12 @@ public class R820TEmbeddedTuner extends EmbeddedTuner
 
         /* Check to see if the PLL locked with these divider, integral and sdm
          * settings */
-        if(!isPLLLocked(controlI2C))
+        if(isPLLLocked(controlI2C))
         {
             /* Increase VCO current */
             writeR820TRegister(Register.VCO_CURRENT, (byte) 0x60, controlI2C);
 
-            if(!isPLLLocked(controlI2C))
+            if(isPLLLocked(controlI2C))
             {
                 throw new UsbException("R820T Tuner Controller - couldn't achieve PLL lock on frequency [" + frequency + "]");
             }
@@ -436,7 +436,7 @@ public class R820TEmbeddedTuner extends EmbeddedTuner
     private boolean isPLLLocked(boolean controlI2C) throws UsbException
     {
         int register = getStatusRegister(2, controlI2C);
-        return (register & 0x40) == 0x40;
+        return (register & 0x40) != 0x40;
     }
 
     /**

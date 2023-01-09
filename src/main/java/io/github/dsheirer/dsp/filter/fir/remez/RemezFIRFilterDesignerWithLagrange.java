@@ -510,7 +510,7 @@ public class RemezFIRFilterDesignerWithLagrange
             next = it.next();
 
             //Check for consecutive (redundant) indices on same side of zero axis - retain largest
-            if(!(positiveAxis ^ (mGridErrors[next] > 0.0)))
+            if(positiveAxis == mGridErrors[next] > 0.0)
             {
                 if(FastMath.abs(mGridErrors[next]) <= FastMath.abs(mGridErrors[current]))
                 {

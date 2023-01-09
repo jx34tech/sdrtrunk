@@ -55,10 +55,7 @@ public class CACH
         {
             BinaryMessage copy = getMessage().copy();
             copy.flip(0);
-            if(getCrcChecksum(copy) == 0)
-            {
-                return true;
-            }
+            return getCrcChecksum(copy) == 0;
         }
 
         return false;
@@ -67,13 +64,14 @@ public class CACH
     @Override
     public String toString()
     {
-        StringBuilder sb = new StringBuilder();
-//        sb.append(getMessage().toHexString()).append(" ");
+        //        sb.append(getMessage().toHexString()).append(" ");
 //        sb.append(getInboundChannelAccessType().name()).append(" ");
-        sb.append(getLCSS());
+        //        sb.append(" (").append(getTimeslot()).append("|").append(getCrcChecksum(getMessage())).append(")");
+//        sb.append(" ").append(getPayload().toHexString());
+        return String.valueOf(getLCSS())
 //        sb.append(" (").append(getTimeslot()).append("|").append(getCrcChecksum(getMessage())).append(")");
 //        sb.append(" ").append(getPayload().toHexString());
-        return sb.toString();
+                ;
     }
 
     /**

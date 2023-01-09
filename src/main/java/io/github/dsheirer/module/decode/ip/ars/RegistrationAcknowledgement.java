@@ -86,7 +86,7 @@ public class RegistrationAcknowledgement extends ARSHeader
      */
     public boolean isSuccessful()
     {
-        return !isAcknowledge();
+        return isAcknowledge();
     }
 
     /**

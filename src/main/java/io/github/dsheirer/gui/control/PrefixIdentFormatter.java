@@ -148,9 +148,7 @@ public class PrefixIdentFormatter extends TextFormatter<Integer>
                     //do nothing
                 }
 
-                int talkgroup = (a << 13) + b;
-
-                return talkgroup;
+                return (a << 13) + b;
             }
 
             return null;

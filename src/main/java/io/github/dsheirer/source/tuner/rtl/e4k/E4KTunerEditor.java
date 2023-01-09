@@ -197,7 +197,7 @@ public class E4KTunerEditor extends TunerEditor<RTL2832Tuner, E4KTunerConfigurat
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    if(!isLoading())
+                    if(isLoading())
                     {
                         try
                         {
@@ -228,7 +228,7 @@ public class E4KTunerEditor extends TunerEditor<RTL2832Tuner, E4KTunerConfigurat
             mLNAGainCombo = new JComboBox<>(E4KLNAGain.values());
             mLNAGainCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -258,7 +258,7 @@ public class E4KTunerEditor extends TunerEditor<RTL2832Tuner, E4KTunerConfigurat
             mMixerGainCombo = new JComboBox<>(E4KMixerGain.values());
             mMixerGainCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -289,7 +289,7 @@ public class E4KTunerEditor extends TunerEditor<RTL2832Tuner, E4KTunerConfigurat
             mMasterGainCombo.setEnabled(false);
             mMasterGainCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -337,7 +337,7 @@ public class E4KTunerEditor extends TunerEditor<RTL2832Tuner, E4KTunerConfigurat
             mSampleRateCombo.setEnabled(false);
             mSampleRateCombo.addActionListener(e ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     SampleRate sampleRate = (SampleRate) mSampleRateCombo.getSelectedItem();
 
@@ -451,7 +451,7 @@ public class E4KTunerEditor extends TunerEditor<RTL2832Tuner, E4KTunerConfigurat
     @Override
     public void save()
     {
-        if(hasConfiguration() && !isLoading())
+        if(hasConfiguration() && isLoading())
         {
             E4KTunerConfiguration config = getConfiguration();
             config.setFrequency(getFrequencyControl().getFrequency());

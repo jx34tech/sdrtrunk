@@ -121,7 +121,7 @@ public class RecordingTunerEditor extends TunerEditor<RecordingTuner,RecordingTu
     @Override
     public void save()
     {
-        if(hasConfiguration() && !isLoading())
+        if(hasConfiguration() && isLoading())
         {
             RecordingTunerConfiguration config = getConfiguration();
             config.setFrequency(getFrequencyControl().getFrequency());

@@ -224,10 +224,9 @@ public class TileFactoryInfo
 			ypart = "&" + yparam + "=" + (tilemax / 2 - y - 1);
 		}
 		// System.out.println("new ypart = " + ypart);
-		String url = baseURL + "&" + xparam + "=" + x + ypart +
+		return baseURL + "&" + xparam + "=" + x + ypart +
 		// "&" + yparam + "=" + tilePoint.getY() +
 				"&" + zparam + "=" + zoom;
-		return url;
 	}
 
 	/**

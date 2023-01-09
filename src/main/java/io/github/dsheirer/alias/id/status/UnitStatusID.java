@@ -36,7 +36,7 @@ public class UnitStatusID extends AliasID
     @Override
     public boolean isAudioIdentifier()
     {
-        return false;
+        return true;
     }
 
     @JacksonXmlProperty(isAttribute = true, localName = "status")

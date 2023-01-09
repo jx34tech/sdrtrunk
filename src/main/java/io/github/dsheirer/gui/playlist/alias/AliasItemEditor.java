@@ -276,7 +276,7 @@ public class AliasItemEditor extends Editor<Alias>
             //Only add non-audio identifiers to the list -- audio identifiers are managed separately
             for(AliasID aliasID: alias.getAliasIdentifiers())
             {
-                if(!aliasID.isAudioIdentifier())
+                if(aliasID.isAudioIdentifier())
                 {
                     AliasID copy = AliasFactory.copyOf(aliasID);
 
@@ -1602,7 +1602,7 @@ public class AliasItemEditor extends Editor<Alias>
             gridPane.add(iconLabel, 0, 0);
             gridPane.add(textLabel,1,0);
 
-            ListCell<Icon> cell = new ListCell<>()
+            return new ListCell<>()
             {
                 @Override
                 protected void updateItem(Icon item, boolean empty)
@@ -1622,8 +1622,6 @@ public class AliasItemEditor extends Editor<Alias>
                     }
                 }
             };
-
-            return cell;
         }
     }
 }

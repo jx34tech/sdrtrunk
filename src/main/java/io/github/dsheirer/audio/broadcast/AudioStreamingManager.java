@@ -189,9 +189,7 @@ public class AudioStreamingManager implements Listener<AudioSegment>
         sb.append(TimeStamp.getLongTimeStamp("_"));
         sb.append(mBroadcastFormat.getFileExtension());
 
-        Path temporaryRecordingPath = mUserPreferences.getDirectoryPreference().getDirectoryStreaming().resolve(sb.toString());
-
-        return temporaryRecordingPath;
+        return mUserPreferences.getDirectoryPreference().getDirectoryStreaming().resolve(sb.toString());
     }
 
     /**

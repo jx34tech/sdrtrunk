@@ -174,7 +174,7 @@ public class FCD1TunerEditor extends TunerEditor<FCDTuner,FCD1TunerConfiguration
             mLnaGainCombo.setToolTipText("Adjust the low noise amplifier gain setting.");
             mLnaGainCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     LNAGain gain = (LNAGain) mLnaGainCombo.getSelectedItem();
 
@@ -206,7 +206,7 @@ public class FCD1TunerEditor extends TunerEditor<FCDTuner,FCD1TunerConfiguration
             mLnaEnhanceCombo.setToolTipText("Adjust the LNA enhance setting.  Default value is OFF");
             mLnaEnhanceCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     LNAEnhance enhance = (LNAEnhance) mLnaEnhanceCombo.getSelectedItem();
 
@@ -238,7 +238,7 @@ public class FCD1TunerEditor extends TunerEditor<FCDTuner,FCD1TunerConfiguration
             mMixerGainCombo.setToolTipText("Adjust mixer gain setting");
             mMixerGainCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     MixerGain gain = (MixerGain) mMixerGainCombo.getSelectedItem();
 
@@ -363,7 +363,7 @@ public class FCD1TunerEditor extends TunerEditor<FCDTuner,FCD1TunerConfiguration
     @Override
     public void save()
     {
-        if(hasConfiguration() && !isLoading())
+        if(hasConfiguration() && isLoading())
         {
             getConfiguration().setFrequency(getFrequencyControl().getFrequency());
             double value = ((SpinnerNumberModel) getFrequencyCorrectionSpinner().getModel()).getNumber().doubleValue();
@@ -410,7 +410,7 @@ public class FCD1TunerEditor extends TunerEditor<FCDTuner,FCD1TunerConfiguration
 
             addChangeListener(e ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     double value = ((SpinnerNumberModel)getModel()).getNumber().doubleValue();
 

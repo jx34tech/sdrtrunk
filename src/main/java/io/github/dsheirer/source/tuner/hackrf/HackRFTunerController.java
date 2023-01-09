@@ -284,7 +284,7 @@ public class HackRFTunerController extends USBTunerController
         if(config instanceof HackRFTunerConfiguration hackRFConfig)
         {
             //Convert legacy sample rate setting to new sample rates
-            if(!hackRFConfig.getSampleRate().isValidSampleRate())
+            if(hackRFConfig.getSampleRate().isValidSampleRate())
             {
                 mLog.warn("Changing legacy HackRF Sample Rates Setting [" + hackRFConfig.getSampleRate().name() +
                         "] to current valid setting");
@@ -395,7 +395,7 @@ public class HackRFTunerController extends USBTunerController
      */
     public void setSampleRate(HackRFSampleRate rate) throws UsbException, SourceException
     {
-        if(!rate.isValidSampleRate())
+        if(rate.isValidSampleRate())
         {
             rate = HackRFSampleRate.RATE_5_0;
         }
@@ -533,7 +533,7 @@ public class HackRFTunerController extends USBTunerController
 
         public boolean isValidSampleRate()
         {
-            return VALID_SAMPLE_RATES.contains(this);
+            return !VALID_SAMPLE_RATES.contains(this);
         }
     }
 

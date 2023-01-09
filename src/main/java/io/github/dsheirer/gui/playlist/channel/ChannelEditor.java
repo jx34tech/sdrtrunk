@@ -384,7 +384,8 @@ public class ChannelEditor extends SplitPane
             playingColumn.setPrefWidth(75);
             playingColumn.setCellValueFactory(new PropertyValueFactory<>("processing"));
             playingColumn.setCellFactory(param -> {
-                TableCell<Channel,Boolean> tableCell = new TableCell<>()
+
+                return new TableCell<>()
                 {
                     @Override
                     protected void updateItem(Boolean item, boolean empty)
@@ -404,15 +405,14 @@ public class ChannelEditor extends SplitPane
                         }
                     }
                 };
-
-                return tableCell;
             });
 
             TableColumn<Channel,Boolean> autoStartColumn = new TableColumn<>("Auto-Start");
             autoStartColumn.setCellValueFactory(new PropertyValueFactory<>("autoStart"));
             autoStartColumn.setPrefWidth(95);
             autoStartColumn.setCellFactory(param -> {
-                TableCell<Channel,Boolean> tableCell = new TableCell<>()
+
+                return new TableCell<>()
                 {
                     @Override
                     protected void updateItem(Boolean item, boolean empty)
@@ -432,8 +432,6 @@ public class ChannelEditor extends SplitPane
                         }
                     }
                 };
-
-                return tableCell;
             });
 
             TableColumn systemColumn = new TableColumn("System");
@@ -750,12 +748,7 @@ public class ChannelEditor extends SplitPane
                 return true;
             }
 
-            if(channel.getDecodeConfiguration().getDecoderType().toString().toLowerCase().contains(mFilterText))
-            {
-                return true;
-            }
-
-            return false;
+            return channel.getDecodeConfiguration().getDecoderType().toString().toLowerCase().contains(mFilterText);
         }
     }
 }

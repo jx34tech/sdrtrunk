@@ -40,8 +40,7 @@ public class UsbUtils
     {
         UsbServices services = UsbHostManager.getUsbServices();
         UsbHub root = services.getRootUsbHub();
-        List<UsbDevice> devices = new ArrayList<UsbDevice>(getHubDevices(root));
-        return devices;
+        return new ArrayList<UsbDevice>(getHubDevices(root));
     }
 
     /**

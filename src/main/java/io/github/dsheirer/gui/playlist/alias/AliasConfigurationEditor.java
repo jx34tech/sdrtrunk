@@ -393,7 +393,8 @@ public class AliasConfigurationEditor extends SplitPane
             errorsColumn.setCellValueFactory(new PropertyValueFactory<>("overlap"));
             errorsColumn.setCellFactory(param ->
             {
-                TableCell<Alias, Boolean> tableCell = new TableCell<>()
+
+                return new TableCell<>()
                 {
                     @Override
                     protected void updateItem(Boolean item, boolean empty)
@@ -414,8 +415,6 @@ public class AliasConfigurationEditor extends SplitPane
                         }
                     }
                 };
-
-                return tableCell;
             });
 
 
@@ -771,7 +770,8 @@ public class AliasConfigurationEditor extends SplitPane
         @Override
         public TableCell<Alias, Integer> call(TableColumn<Alias, Integer> param)
         {
-            TableCell tableCell = new TableCell<Alias, Integer>()
+
+            return (TableCell) new TableCell<Alias, Integer>()
             {
                 @Override
                 protected void updateItem(Integer item, boolean empty)
@@ -807,8 +807,6 @@ public class AliasConfigurationEditor extends SplitPane
                     }
                 }
             };
-
-            return tableCell;
         }
     }
 
@@ -817,7 +815,8 @@ public class AliasConfigurationEditor extends SplitPane
         @Override
         public TableCell<Alias, String> call(TableColumn<Alias, String> param)
         {
-            TableCell<Alias, String> tableCell = new TableCell<>()
+
+            return new TableCell<>()
             {
                 @Override
                 protected void updateItem(String item, boolean empty)
@@ -852,8 +851,6 @@ public class AliasConfigurationEditor extends SplitPane
                     }
                 }
             };
-
-            return tableCell;
         }
     }
 
@@ -882,10 +879,7 @@ public class AliasConfigurationEditor extends SplitPane
                 {
                     return true;
                 }
-                else if(alias.getGroup() != null && alias.getGroup().toLowerCase().contains(mSearchText))
-                {
-                    return true;
-                }
+                else return alias.getGroup() != null && alias.getGroup().toLowerCase().contains(mSearchText);
             }
 
             return false;

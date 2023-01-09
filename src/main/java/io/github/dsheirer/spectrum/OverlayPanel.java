@@ -367,14 +367,7 @@ public class OverlayPanel extends JPanel implements Listener<ChannelEvent>, ISou
             {
                 drawFrequencyLineAndLabel(graphics, frequency);
             }
-            else if(frequency % major == 0)
-            {
-                drawTickLine(graphics, frequency, true);
-            }
-            else
-            {
-                drawTickLine(graphics, frequency, false);
-            }
+            else drawTickLine(graphics, frequency, frequency % major == 0);
 
             frequency += minor;
         }

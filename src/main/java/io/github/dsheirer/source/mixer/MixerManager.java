@@ -253,7 +253,7 @@ public class MixerManager
         {
             if(audioFormat.getSampleSizeInBits() == audioFormatToTest.getSampleSizeInBits() &&
                 audioFormat.getChannels() == audioFormatToTest.getChannels() &&
-                !(audioFormat.isBigEndian() ^ audioFormatToTest.isBigEndian()))
+                    audioFormat.isBigEndian() == audioFormatToTest.isBigEndian())
             {
                 return audioFormatToTest;
             }

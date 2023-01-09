@@ -113,7 +113,7 @@ public class PlaylistManagerEditor extends HBox
     private boolean isCurrent(Path path)
     {
         Path current = mUserPreferences.getPlaylistPreference().getPlaylist();
-        return path != null && current != null && path.equals(current);
+        return path != null && path.equals(current);
     }
 
     /**

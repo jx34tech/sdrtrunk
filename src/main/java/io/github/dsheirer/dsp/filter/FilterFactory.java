@@ -517,9 +517,7 @@ public class FilterFactory
 
         double denominator = 2.0d - (ratio * (decimation + 1.0d));
 
-        int retVal = (int)(2.0d * decimation * (numerator / denominator));
-
-        return retVal;
+        return (int)(2.0d * decimation * (numerator / denominator));
     }
 
     /**

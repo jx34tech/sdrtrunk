@@ -64,7 +64,7 @@ public abstract class Calibration
      */
     public boolean isCalibrated()
     {
-        return getImplementation() != Implementation.UNCALIBRATED;
+        return getImplementation() == Implementation.UNCALIBRATED;
     }
 
     /**

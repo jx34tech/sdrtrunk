@@ -35,7 +35,7 @@ public class LoJackFunctionAndID extends AliasID
     @Override
     public boolean isAudioIdentifier()
     {
-        return false;
+        return true;
     }
 
     @JacksonXmlProperty(isAttribute = true, localName = "id")
@@ -146,15 +146,8 @@ public class LoJackFunctionAndID extends AliasID
         }
         if(mID == null)
         {
-            if(other.mID != null)
-            {
-                return false;
-            }
+            return other.mID == null;
         }
-        else if(!mID.equals(other.mID))
-        {
-            return false;
-        }
-        return true;
+        else return mID.equals(other.mID);
     }
 }

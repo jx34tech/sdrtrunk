@@ -48,8 +48,7 @@ public class OSMTileFactoryInfo extends TileFactoryInfo
 	public String getTileUrl(int x, int y, int zoom)
 	{
 		zoom = max - zoom;
-		String url = this.baseURL + "/" + zoom + "/" + x + "/" + y + ".png";
-		return url;
+		return this.baseURL + "/" + zoom + "/" + x + "/" + y + ".png";
 	}
 
 }

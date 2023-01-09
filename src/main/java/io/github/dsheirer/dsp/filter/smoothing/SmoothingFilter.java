@@ -73,10 +73,8 @@ public abstract class SmoothingFilter
 		
 		float[] filtered = new float[ data.length ];
 
-		int toCopy = middle;
-		
-		System.arraycopy( data, 0, filtered, 0, toCopy );
-		System.arraycopy( data, data.length - toCopy, filtered, filtered.length - toCopy, toCopy );
+		System.arraycopy( data, 0, filtered, 0, middle);
+		System.arraycopy( data, data.length - middle, filtered, filtered.length - middle, middle);
 		
 		float accumulator;
 		

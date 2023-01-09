@@ -113,20 +113,15 @@ public class GeoPosition
         {
             return false;
         }
-        if(!(obj instanceof GeoPosition))
+        if(!(obj instanceof GeoPosition other))
         {
             return false;
         }
-        GeoPosition other = (GeoPosition)obj;
         if(Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
         {
             return false;
         }
-        if(Double.doubleToLongBits(longitude) != Double.doubleToLongBits(other.longitude))
-        {
-            return false;
-        }
-        return true;
+        return Double.doubleToLongBits(longitude) == Double.doubleToLongBits(other.longitude);
     }
 
     @Override

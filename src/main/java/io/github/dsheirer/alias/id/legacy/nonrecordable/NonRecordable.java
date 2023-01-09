@@ -36,7 +36,7 @@ public class NonRecordable extends AliasID
     @Override
     public boolean isAudioIdentifier()
     {
-        return true;
+        return false;
     }
 
     @Override

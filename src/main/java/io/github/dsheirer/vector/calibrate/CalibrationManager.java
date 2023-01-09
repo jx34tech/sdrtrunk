@@ -184,13 +184,13 @@ public class CalibrationManager
     {
         for(Calibration calibration: mCalibrationMap.values())
         {
-            if(!calibration.isCalibrated())
+            if(calibration.isCalibrated())
             {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -238,7 +238,7 @@ public class CalibrationManager
 
             for(Calibration calibration: uncalibrated)
             {
-                if(!calibration.isCalibrated())
+                if(calibration.isCalibrated())
                 {
                     mLog.info("Calibrating [" + ++calibrationCounter + " of " + uncalibrated.size() +
                             "] Type: " + calibration.getType());
@@ -259,7 +259,7 @@ public class CalibrationManager
 
         for(Calibration calibration: mCalibrationMap.values())
         {
-            if(!calibration.isCalibrated())
+            if(calibration.isCalibrated())
             {
                 uncalibrated.add(calibration);
             }
@@ -277,7 +277,7 @@ public class CalibrationManager
 //        manager.reset();
         manager.reset(CalibrationType.WINDOW);
 
-        if(!manager.isCalibrated())
+        if(manager.isCalibrated())
         {
             try
             {

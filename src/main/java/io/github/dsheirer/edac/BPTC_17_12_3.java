@@ -1,7 +1,6 @@
 package io.github.dsheirer.edac;
 
 import io.github.dsheirer.bits.BinaryMessage;
-import io.github.dsheirer.bits.CorrectedBinaryMessage;
 
 /*
  Adopted from https://github.com/boatbod/op25/blob/e5e8fe457240fb358a8163bcf6fe7dda5e4d8392/op25/gr-op25_repeater/lib/hamming.cc

@@ -63,8 +63,7 @@ public final class MercatorUtils
 		 * user gets to 181 we want to subtract 360 degrees. Every time a user gets to -181 we want to add 360 degrees.
 		 */
 		int rotations = (int) FastMath.floor((longDegrees + 180) / 360);
-		double longitude = longDegrees - (rotations * 360);
-		return longitude;
+		return longDegrees - (rotations * 360);
 	}
 
 	/**

@@ -172,7 +172,8 @@ public class IconManager extends Editor<Icon>
             typeColumn.setPrefWidth(100);
             typeColumn.setCellValueFactory(new PropertyValueFactory<>("defaultIcon"));
             typeColumn.setCellFactory(param -> {
-                TableCell tableCell = new TableCell<Icon,Boolean>()
+
+                return (TableCell) new TableCell<Icon,Boolean>()
                 {
                     @Override
                     protected void updateItem(Boolean item, boolean empty)
@@ -200,8 +201,6 @@ public class IconManager extends Editor<Icon>
                         }
                     }
                 };
-
-                return tableCell;
             });
 
             mIconTableView.getColumns().addAll(typeColumn, iconColumn, nameColumn);
@@ -532,7 +531,8 @@ public class IconManager extends Editor<Icon>
         @Override
         public TableCell<Icon, String> call(TableColumn<Icon, String> param)
         {
-            TableCell<Icon,String> tableCell = new TableCell<>()
+
+            return new TableCell<>()
             {
                 @Override
                 protected void updateItem(String item, boolean empty)
@@ -564,8 +564,6 @@ public class IconManager extends Editor<Icon>
                     }
                 }
             };
-
-            return tableCell;
         }
     }
 }

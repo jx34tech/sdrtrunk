@@ -148,7 +148,7 @@ public class FCD2TunerEditor extends TunerEditor<FCDTuner, FCD2TunerConfiguratio
             mLnaGainCheckBox.setEnabled(false);
             mLnaGainCheckBox.addActionListener(event ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -174,7 +174,7 @@ public class FCD2TunerEditor extends TunerEditor<FCDTuner, FCD2TunerConfiguratio
             mMixerGainCheckBox.setEnabled(false);
             mMixerGainCheckBox.addActionListener(event ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -233,7 +233,7 @@ public class FCD2TunerEditor extends TunerEditor<FCDTuner, FCD2TunerConfiguratio
     @Override
     public void save()
     {
-        if(hasConfiguration() && !isLoading())
+        if(hasConfiguration() && isLoading())
         {
             getConfiguration().setFrequency(getFrequencyControl().getFrequency());
             double value = ((SpinnerNumberModel) getFrequencyCorrectionSpinner().getModel()).getNumber().doubleValue();

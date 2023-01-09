@@ -192,9 +192,8 @@ public class DecoderFactory
     }
 
     private static void processP25Phase1(Channel channel, UserPreferences userPreferences, List<Module> modules, AliasList aliasList, ChannelType channelType, DecodeConfigP25Phase1 decodeConfig) {
-        DecodeConfigP25Phase1 p25Config = decodeConfig;
 
-        switch(p25Config.getModulation())
+        switch(decodeConfig.getModulation())
         {
             case C4FM:
                 modules.add(new P25P1DecoderC4FM());
@@ -204,7 +203,7 @@ public class DecoderFactory
                 break;
             default:
                 throw new IllegalArgumentException("Unrecognized P25 Phase 1 Modulation [" +
-                    p25Config.getModulation() + "]");
+                    decodeConfig.getModulation() + "]");
         }
 
         if(channelType == ChannelType.STANDARD)
@@ -242,12 +241,11 @@ public class DecoderFactory
     }
 
     private static void processMPT1327(ChannelMapModel channelMapModel, Channel channel, List<Module> modules, AliasList aliasList, ChannelType channelType, DecodeConfigMPT1327 decodeConfig) {
-        DecodeConfigMPT1327 mptConfig = decodeConfig;
-        ChannelMap channelMap = channelMapModel.getChannelMap(mptConfig.getChannelMapName());
-        Sync sync = mptConfig.getSync();
+        ChannelMap channelMap = channelMapModel.getChannelMap(decodeConfig.getChannelMapName());
+        Sync sync = decodeConfig.getSync();
         modules.add(new MPT1327Decoder(sync));
 
-        final int callTimeoutMilliseconds = mptConfig.getCallTimeoutSeconds() * 1000;
+        final int callTimeoutMilliseconds = decodeConfig.getCallTimeoutSeconds() * 1000;
 
         // Set max segment audio sample length slightly above call timeout to
         // not create a new segment if the processing chain finishes a bit after

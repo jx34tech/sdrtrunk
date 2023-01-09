@@ -289,7 +289,7 @@ public class R820TTunerEditor extends TunerEditor<RTL2832Tuner,R820TTunerConfigu
             mSampleRateCombo.setEnabled(false);
             mSampleRateCombo.addActionListener(e ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     SampleRate sampleRate = (SampleRate) mSampleRateCombo.getSelectedItem();
 
@@ -322,7 +322,7 @@ public class R820TTunerEditor extends TunerEditor<RTL2832Tuner,R820TTunerConfigu
             mMixerGainCombo.setEnabled(false);
             mMixerGainCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -363,7 +363,7 @@ public class R820TTunerEditor extends TunerEditor<RTL2832Tuner,R820TTunerConfigu
             mMasterGainCombo.setEnabled(false);
             mMasterGainCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -482,7 +482,7 @@ public class R820TTunerEditor extends TunerEditor<RTL2832Tuner,R820TTunerConfigu
     @Override
     public void save()
     {
-        if(hasConfiguration() && !isLoading())
+        if(hasConfiguration() && isLoading())
         {
             R820TTunerConfiguration config = getConfiguration();
 

@@ -178,7 +178,7 @@ public class AirspyTunerEditor extends TunerEditor<AirspyTuner, AirspyTunerConfi
             mLNAAGCCheckBox.setEnabled(false);
             mLNAAGCCheckBox.addActionListener(e ->
             {
-                if(hasTuner() && !isLoading())
+                if(hasTuner() && isLoading())
                 {
                     try
                     {
@@ -205,7 +205,7 @@ public class AirspyTunerEditor extends TunerEditor<AirspyTuner, AirspyTunerConfi
             mMixerAGCCheckBox.setEnabled(false);
             mMixerAGCCheckBox.addActionListener(e ->
             {
-                if(hasTuner() && !isLoading())
+                if(hasTuner() && isLoading())
                 {
                     try
                     {
@@ -248,7 +248,7 @@ public class AirspyTunerEditor extends TunerEditor<AirspyTuner, AirspyTunerConfi
             {
                 int gain = mLNAGainSlider.getValue();
 
-                if(hasTuner() && !isLoading())
+                if(hasTuner() && isLoading())
                 {
                     try
                     {
@@ -296,7 +296,7 @@ public class AirspyTunerEditor extends TunerEditor<AirspyTuner, AirspyTunerConfi
                 {
                     int gain = mMixerGainSlider.getValue();
 
-                    if(hasTuner() && !isLoading())
+                    if(hasTuner() && isLoading())
                     {
                         try
                         {
@@ -352,7 +352,7 @@ public class AirspyTunerEditor extends TunerEditor<AirspyTuner, AirspyTunerConfi
             {
                 int gain = mIFGainSlider.getValue();
 
-                if(hasTuner() && !isLoading())
+                if(hasTuner() && isLoading())
                 {
                     try
                     {
@@ -410,7 +410,7 @@ public class AirspyTunerEditor extends TunerEditor<AirspyTuner, AirspyTunerConfi
                 int value = mMasterGainSlider.getValue();
                 Gain gain = Gain.getGain(mode, value);
 
-                if(hasTuner() && !isLoading())
+                if(hasTuner() && isLoading())
                 {
                     try
                     {
@@ -440,7 +440,7 @@ public class AirspyTunerEditor extends TunerEditor<AirspyTuner, AirspyTunerConfi
             mGainModeCombo.setEnabled(false);
             mGainModeCombo.addActionListener(e ->
             {
-                if(hasTuner() && !isLoading())
+                if(hasTuner() && isLoading())
                 {
                     GainMode mode = (GainMode)mGainModeCombo.getSelectedItem();
                     int value = getMasterGainSlider().getValue();
@@ -465,7 +465,7 @@ public class AirspyTunerEditor extends TunerEditor<AirspyTuner, AirspyTunerConfi
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    if(hasTuner() && !isLoading())
+                    if(hasTuner() && isLoading())
                     {
                         AirspySampleRate rate = (AirspySampleRate)mSampleRateCombo.getSelectedItem();
 
@@ -575,7 +575,7 @@ public class AirspyTunerEditor extends TunerEditor<AirspyTuner, AirspyTunerConfi
     @Override
     public void save()
     {
-        if(hasConfiguration() && !isLoading())
+        if(hasConfiguration() && isLoading())
         {
             getConfiguration().setFrequency(getFrequencyControl().getFrequency());
             double value = ((SpinnerNumberModel) getFrequencyCorrectionSpinner().getModel()).getNumber().doubleValue();

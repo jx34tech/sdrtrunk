@@ -32,7 +32,7 @@ public class UniqueID extends AliasID
     @Override
     public boolean isAudioIdentifier()
     {
-        return false;
+        return true;
     }
 
     @JacksonXmlProperty(isAttribute = true, localName = "uid")

@@ -148,7 +148,7 @@ public class HackRFTunerEditor extends TunerEditor<HackRFTuner,HackRFTunerConfig
             mVgaGainCombo.setEnabled(false);
             mVgaGainCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -185,7 +185,7 @@ public class HackRFTunerEditor extends TunerEditor<HackRFTuner,HackRFTunerConfig
             mLnaGainCombo.setEnabled(false);
             mLnaGainCombo.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -221,7 +221,7 @@ public class HackRFTunerEditor extends TunerEditor<HackRFTuner,HackRFTunerConfig
             mAmplifier.setEnabled(false);
             mAmplifier.addActionListener(arg0 ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     try
                     {
@@ -251,7 +251,7 @@ public class HackRFTunerEditor extends TunerEditor<HackRFTuner,HackRFTunerConfig
             mSampleRateCombo.setEnabled(false);
             mSampleRateCombo.addActionListener(e ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     HackRFSampleRate sampleRate = (HackRFSampleRate)getSampleRateCombo().getSelectedItem();
 
@@ -396,7 +396,7 @@ public class HackRFTunerEditor extends TunerEditor<HackRFTuner,HackRFTunerConfig
     @Override
     public void save()
     {
-        if(hasConfiguration() && !isLoading())
+        if(hasConfiguration() && isLoading())
         {
             getConfiguration().setFrequency(getFrequencyControl().getFrequency());
             double value = ((SpinnerNumberModel) getFrequencyCorrectionSpinner().getModel()).getNumber().doubleValue();

@@ -67,11 +67,7 @@ public final class GeoUtil
 			return false;
 		}
 		// if out of zoom bounds
-		if (zoomLevel < info.getMinimumZoomLevel() || zoomLevel > info.getMaximumZoomLevel())
-		{
-			return false;
-		}
-		return true;
+		return zoomLevel >= info.getMinimumZoomLevel() && zoomLevel <= info.getMaximumZoomLevel();
 	}
 
 	/**
@@ -130,10 +126,7 @@ public final class GeoUtil
 		double flon = (wx - info.getMapCenterInPixelsAtZoom(zoom).getX()) / info.getLongitudeDegreeWidthInPixels(zoom);
 		double e1 = (wy - info.getMapCenterInPixelsAtZoom(zoom).getY())
 				/ (-1 * info.getLongitudeRadianWidthInPixels(zoom));
-		double e2 = (2 * FastMath.atan(FastMath.exp(e1)) - FastMath.PI / 2) / (FastMath.PI / 180.0);
-		double flat = e2;
-		GeoPosition wc = new GeoPosition(flat, flon);
-		return wc;
+		return new GeoPosition((2 * FastMath.atan(FastMath.exp(e1)) - FastMath.PI / 2) / (FastMath.PI / 180.0), flon);
 	}
 
 	/**

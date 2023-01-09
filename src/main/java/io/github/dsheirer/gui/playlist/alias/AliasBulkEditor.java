@@ -406,7 +406,7 @@ public class AliasBulkEditor extends Editor<List<Alias>>
             gridPane.add(iconLabel, 0, 0);
             gridPane.add(textLabel, 1, 0);
 
-            ListCell<Icon> cell = new ListCell<>()
+            return new ListCell<>()
             {
                 @Override
                 protected void updateItem(Icon item, boolean empty)
@@ -426,8 +426,6 @@ public class AliasBulkEditor extends Editor<List<Alias>>
                     }
                 }
             };
-
-            return cell;
         }
     }
 }

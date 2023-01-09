@@ -253,12 +253,7 @@ public class Alias
         {
             return true;
         }
-        else if(!isEmptyArgument && !isEmptyThis && aliasList.contentEquals(getAliasListName()))
-        {
-            return true;
-        }
-
-        return false;
+        else return !isEmptyArgument && !isEmptyThis && aliasList.contentEquals(getAliasListName());
     }
 
     /**
@@ -688,7 +683,7 @@ public class Alias
 
         while(it.hasNext())
         {
-            if(!it.next().isAudioIdentifier())
+            if(it.next().isAudioIdentifier())
             {
                 it.remove();
             }

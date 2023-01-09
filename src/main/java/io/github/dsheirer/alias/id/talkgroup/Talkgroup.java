@@ -50,7 +50,7 @@ public class Talkgroup extends AliasID implements Comparable<Talkgroup>
     @Override
     public boolean isAudioIdentifier()
     {
-        return false;
+        return true;
     }
 
     @JacksonXmlProperty(isAttribute = true, localName = "value")

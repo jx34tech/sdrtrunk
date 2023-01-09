@@ -383,7 +383,6 @@ public class MutableIdentifierCollection extends IdentifierCollection implements
      */
     public IdentifierCollection copyOf()
     {
-        IdentifierCollection copy = new IdentifierCollection(getIdentifiers(), getTimeslot());
-        return copy;
+        return new IdentifierCollection(getIdentifiers(), getTimeslot());
     }
 }

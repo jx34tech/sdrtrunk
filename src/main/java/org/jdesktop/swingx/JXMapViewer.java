@@ -597,7 +597,7 @@ public class JXMapViewer extends JPanel implements DesignMode
 			}
 
 			// don't let the user pan over the left edge
-			if (!isHorizontalWrapped() && newVP.getX() < 0)
+			if (isHorizontalWrapped() && newVP.getX() < 0)
 			{
 				centerX = viewportWidth / 2;
 			}
@@ -609,7 +609,7 @@ public class JXMapViewer extends JPanel implements DesignMode
 			}
 
 			// don't let the user pan over the right edge
-			if (!isHorizontalWrapped() && (newVP.getX() + newVP.getWidth() > mapWidth))
+			if (isHorizontalWrapped() && (newVP.getX() + newVP.getWidth() > mapWidth))
 			{
 				centerX = mapWidth - viewportWidth / 2;
 			}
@@ -621,7 +621,7 @@ public class JXMapViewer extends JPanel implements DesignMode
 			}
 
 			// if map is too small then just center it horiz
-			if (!isHorizontalWrapped() && mapWidth < newVP.getWidth())
+			if (isHorizontalWrapped() && mapWidth < newVP.getWidth())
 			{
 				centerX = mapWidth / 2;
 			}
@@ -755,7 +755,7 @@ public class JXMapViewer extends JPanel implements DesignMode
 	 */
 	public boolean isHorizontalWrapped()
 	{
-		return horizontalWrapped;
+		return !horizontalWrapped;
 	}
 
 	/**
@@ -794,8 +794,7 @@ public class JXMapViewer extends JPanel implements DesignMode
 		Point2D pt2 = new Point2D.Double(pt.getX() + bounds.getX(), pt.getY() + bounds.getY());
 
 		// convert from world bitmap to geo
-		GeoPosition pos = getTileFactory().pixelToGeo(pt2, getZoom());
-		return pos;
+		return getTileFactory().pixelToGeo(pt2, getZoom());
 	}
 
 
@@ -805,6 +804,6 @@ public class JXMapViewer extends JPanel implements DesignMode
 	 */
 	public boolean isNegativeYAllowed()
 	{
-		return isNegativeYAllowed;
+		return !isNegativeYAllowed;
 	}
 }

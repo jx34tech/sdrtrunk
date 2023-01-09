@@ -304,7 +304,7 @@ public abstract class IcecastConfiguration extends BroadcastConfiguration
     public boolean hasInline()
     {
         // Bitrate must be known to calculate metadata interval
-        return mInline != false && hasBitRate();
+        return mInline && hasBitRate();
     }
 
     @Override
@@ -330,11 +330,6 @@ public abstract class IcecastConfiguration extends BroadcastConfiguration
         {
             return false;
         }
-        else if(getBitRate() <= 0)
-        {
-            return false;
-        }
-
-        return true;
+        else return getBitRate() > 0;
     }
 }

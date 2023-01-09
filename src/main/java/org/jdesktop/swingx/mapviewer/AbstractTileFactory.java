@@ -106,9 +106,8 @@ public abstract class AbstractTileFactory extends TileFactory
 		}
 
 		tileX = tileX % numTilesWide;
-		int tileY = tpy;
 		// TilePoint tilePoint = new TilePoint(tileX, tpy);
-		String url = getInfo().getTileUrl(tileX, tileY, zoom);// tilePoint);
+		String url = getInfo().getTileUrl(tileX, tpy, zoom);// tilePoint);
 		// System.out.println("loading: " + url);
 
 		Tile.Priority pri = Tile.Priority.High;
@@ -120,13 +119,13 @@ public abstract class AbstractTileFactory extends TileFactory
 		// System.out.println("testing for validity: " + tilePoint + " zoom = " + zoom);
 		if (!tileMap.containsKey(url))
 		{
-			if (!GeoUtil.isValidTile(tileX, tileY, zoom, getInfo()))
+			if (!GeoUtil.isValidTile(tileX, tpy, zoom, getInfo()))
 			{
-				tile = new Tile(tileX, tileY, zoom);
+				tile = new Tile(tileX, tpy, zoom);
 			}
 			else
 			{
-				tile = new Tile(tileX, tileY, zoom, url, pri, this);
+				tile = new Tile(tileX, tpy, zoom, url, pri, this);
 				startLoading(tile);
 			}
 			tileMap.put(url, tile);

@@ -162,9 +162,7 @@ public class LtrFormatter extends TextFormatter<Integer>
                     //do nothing
                 }
 
-                int talkgroup = (a << 13) + (b << 8) + c;
-
-                return talkgroup;
+                return (a << 13) + (b << 8) + c;
             }
 
             return null;

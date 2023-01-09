@@ -103,9 +103,7 @@ public class GoertzelFilter
         double magnitude = (s_prev2 * s_prev2) + (s_prev * s_prev) - (mCoefficient * s_prev * s_prev2);
         int binZero = getBinZeroPower(samples);
 
-        int power = (int)(20 * FastMath.log10(magnitude / binZero));
-
-        return power;
+        return (int)(20 * FastMath.log10(magnitude / binZero));
     }
 
     /**

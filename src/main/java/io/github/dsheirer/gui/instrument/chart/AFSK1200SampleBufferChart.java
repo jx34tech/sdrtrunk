@@ -127,10 +127,9 @@ public class AFSK1200SampleBufferChart extends LineChart
             int symbolEnd = mIInstrumentedAFSK1200Decoder.getAFSK1200Decoder().getSampleBuffer().getSymbolEnd();
 
             float start = pointer1 + samplesPerSymbol - 1;
-            float end = symbolEnd;
 
             mSymbolSamples.get(0).setXValue(start);
-            mSymbolSamples.get(1).setXValue(end);
+            mSymbolSamples.get(1).setXValue((float) symbolEnd);
 
 
             mPreviousSymbol.get(0).setXValue(symbolStart);

@@ -61,10 +61,8 @@ public class ESRITileFactory extends DefaultTileFactory
 			// System.out.println("map width at zoom = " + getMapWidthInTilesAtZoom(zoom));
 
 			// provide the center point of the tile, in lat/long coords
-			int tileY = y;
-			int tileX = x;
-			int pixelX = tileX * factory.getTileSize(zoom) + (factory.getTileSize(zoom) / 2);
-			int pixelY = tileY * factory.getTileSize(zoom) + (factory.getTileSize(zoom) / 2);
+			int pixelX = x * factory.getTileSize(zoom) + (factory.getTileSize(zoom) / 2);
+			int pixelY = y * factory.getTileSize(zoom) + (factory.getTileSize(zoom) / 2);
 
 			GeoPosition latlong = GeoUtil.getPosition(new Point2D.Double(pixelX, pixelY), zoom, this);
 
@@ -83,7 +81,7 @@ public class ESRITileFactory extends DefaultTileFactory
 			BigDecimal lon = new BigDecimal(latlong.getLongitude());
 			lat = lat.setScale(5, RoundingMode.DOWN);
 			lon = lon.setScale(5, RoundingMode.DOWN);
-			System.out.println("Tile      : [" + tileX + ", " + tileY + "]");
+			System.out.println("Tile      : [" + x + ", " + y + "]");
 			System.out.println("Pixel     : [" + pixelX + ", " + pixelY + "]");
 			System.out.println("Lat/Long  : [" + latlong.getLatitude() + ", " + latlong.getLongitude() + "]");
 			System.out.println("Lat2/Long2: [" + lat.doubleValue() + ", " + lon.doubleValue() + "]");

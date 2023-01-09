@@ -56,27 +56,24 @@ public class WMSService
 		String format = "image/jpeg";
 		String styles = "";
 		String srs = "EPSG:4326";
-		int ts = tileSize;
 		int circumference = widthOfWorldInPixels(zoom, tileSize);
 		double radius = circumference / (2 * FastMath.PI);
-		double ulx = MercatorUtils.xToLong(x * ts, radius);
-		double uly = MercatorUtils.yToLat(y * ts, radius);
-		double lrx = MercatorUtils.xToLong((x + 1) * ts, radius);
-		double lry = MercatorUtils.yToLat((y + 1) * ts, radius);
+		double ulx = MercatorUtils.xToLong(x * tileSize, radius);
+		double uly = MercatorUtils.yToLat(y * tileSize, radius);
+		double lrx = MercatorUtils.xToLong((x + 1) * tileSize, radius);
+		double lry = MercatorUtils.yToLat((y + 1) * tileSize, radius);
 		String bbox = ulx + "," + uly + "," + lrx + "," + lry;
-		String url = getBaseUrl() + "version=1.1.1&request=" + "GetMap&Layers=" + layer + "&format=" + format
-				+ "&BBOX=" + bbox + "&width=" + ts + "&height=" + ts + "&SRS=" + srs + "&Styles=" + styles +
+		return getBaseUrl() + "version=1.1.1&request=" + "GetMap&Layers=" + layer + "&format=" + format
+				+ "&BBOX=" + bbox + "&width=" + tileSize + "&height=" + tileSize + "&SRS=" + srs + "&Styles=" + styles +
 				// "&transparent=TRUE"+
 				"";
-		return url;
 	}
 
 	private int widthOfWorldInPixels(int zoom, int TILE_SIZE)
 	{
 		// int TILE_SIZE = 256;
 		int tiles = (int) FastMath.pow(2, zoom);
-		int circumference = TILE_SIZE * tiles;
-		return circumference;
+		return TILE_SIZE * tiles;
 	}
 
 	/**

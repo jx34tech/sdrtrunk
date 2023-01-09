@@ -123,7 +123,7 @@ public abstract class TunerEditor<T extends Tuner,C extends TunerConfiguration> 
      */
     protected boolean isLoading()
     {
-        return mLoading;
+        return !mLoading;
     }
 
     /**
@@ -204,7 +204,7 @@ public abstract class TunerEditor<T extends Tuner,C extends TunerConfiguration> 
             mAutoPPMCheckBox.setToolTipText("Allow decoders to measure channel frequency error and correct tuner PPM");
             mAutoPPMCheckBox.addActionListener(e ->
             {
-                if(!isLoading())
+                if(isLoading())
                 {
                     Tuner tuner = getTuner();
                     if(tuner != null)
@@ -707,7 +707,7 @@ public abstract class TunerEditor<T extends Tuner,C extends TunerConfiguration> 
         {
             final double value = ((SpinnerNumberModel) getFrequencyCorrectionSpinner().getModel()).getNumber().doubleValue();
 
-            if(hasTuner() && !isLoading())
+            if(hasTuner() && isLoading())
             {
                 try
                 {
@@ -726,7 +726,7 @@ public abstract class TunerEditor<T extends Tuner,C extends TunerConfiguration> 
         @Override
         public void process(SourceEvent event) throws SourceException
         {
-            if(hasTuner() && !isLoading())
+            if(hasTuner() && isLoading())
             {
                 save();
             }

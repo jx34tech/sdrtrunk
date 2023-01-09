@@ -260,9 +260,8 @@ public class SystemProperties
         {
             try
             {
-                boolean stored = Boolean.parseBoolean(value);
 
-                return stored;
+                return Boolean.parseBoolean(value);
             }
             catch(Exception e)
             {
@@ -287,9 +286,8 @@ public class SystemProperties
         {
             try
             {
-                int stored = Integer.parseInt(value);
 
-                return stored;
+                return Integer.parseInt(value);
             }
             catch(Exception e)
             {
