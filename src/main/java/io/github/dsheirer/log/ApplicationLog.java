@@ -176,8 +176,8 @@ public class ApplicationLog
             mLog.info("Stopping application logging");
             mRollingFileAppender.stop();
             LoggerContext loggerContext = (LoggerContext)LoggerFactory.getILoggerFactory();
-            Logger logger = loggerContext.getLogger(Logger.ROOT_LOGGER_NAME);
-            ((ch.qos.logback.classic.Logger)logger).detachAppender(mRollingFileAppender);
+            ch.qos.logback.classic.Logger logger = loggerContext.getLogger(Logger.ROOT_LOGGER_NAME);
+            logger.detachAppender(mRollingFileAppender);
             mRollingFileAppender = null;
         }
     }
@@ -189,7 +189,7 @@ public class ApplicationLog
                 try {
                     Manifest manifest = new Manifest(resources.nextElement().openStream());
                     Attributes atts = manifest.getMainAttributes();
-                    Boolean hasTitle = atts.containsValue("sdrtrunk project");
+                    boolean hasTitle = atts.containsValue("sdrtrunk project");
                     if (hasTitle) {
                         return atts;
                     }
