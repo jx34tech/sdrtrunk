@@ -47,7 +47,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.Color;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Alias provides an aliasing (e.g. name, color, etc) container that is linked to multiple alias identifiers and
@@ -331,7 +335,7 @@ public class Alias
     @JacksonXmlProperty(isAttribute = false, localName = "id")
     public List<AliasID> getAliasIdentifiers()
     {
-        return Collections.singletonList(mAliasIDs);
+        return mAliasIDs;
     }
 
     public void setAliasIdentifiers(List<AliasID> id)
