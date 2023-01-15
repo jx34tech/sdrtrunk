@@ -49,13 +49,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  * a discrete (ie start/stop) audio event, or it may be a time-constrained portion of an ongoing continuous audio
  * broadcast.  Since the audio segment is held in memory until all consumers have finished processing the segment,
  * producers should constrain the duration of each audio segment to a reasonable duration.
- *
+ * <p>
  * Producers can link time-constrained audio segments from a continous broadcast (e.g. FM radio station) so that
  * consumers can identify audio segments that belong to a continous stream.  This linkage presents a memory leak
  * potential.  Therefore, the audio segment uses the consumer counter to trigger an unlinking via the dispose() mehtod.
  * Accurate accounting of consumer count via the increment/decrementConsumerCount() methods is essential for good
  * memory management.
- *
+ * <p>
  * Producers will add audio buffers and update identifiers throughout the life-cycle of an audio segment.  The producer
  * will signal the completion of an audio segment by setting the complete property to true.  This allows consumers the
  * option to process the audio buffers throughout the life-cycle of the segment, or to process all of the buffers once

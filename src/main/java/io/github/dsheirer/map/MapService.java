@@ -49,9 +49,8 @@ public class MapService implements Listener<IDecodeEvent>
     @Override
     public void receive(IDecodeEvent decodeEvent)
     {
-        if(decodeEvent instanceof PlottableDecodeEvent)
+        if(decodeEvent instanceof PlottableDecodeEvent plottableDecodeEvent)
         {
-            PlottableDecodeEvent plottableDecodeEvent = (PlottableDecodeEvent)decodeEvent;
             Identifier from = plottableDecodeEvent.getIdentifierCollection().getFromIdentifier();
 
             if(from != null)

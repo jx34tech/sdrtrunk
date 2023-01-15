@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Provides packaging of demodulated audio sample buffers into audio segments for broadcast to registered listeners.
  * Includes audio packet metadata in constructed audio segments.
- *
+ * <p>
  * Incorporates audio squelch state listener to control if audio packets are broadcast or ignored.
  */
 public class AudioModule extends AbstractAudioModule implements ISquelchStateListener, IRealBufferListener,
